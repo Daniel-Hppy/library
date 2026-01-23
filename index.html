@@ -31,7 +31,7 @@
         </tbody>
     </table>
     <dialog>
-        <form>
+        <form id="bookForm">
             <p>
                 <label for="title">Title</label>
                 <input type="text" id="title">
@@ -43,6 +43,10 @@
             <p>
                 <label for="pages">Pages</label>
                 <input type="number" id="pages">
+            </p>
+            <p>
+                <label>already Read?</label>
+                <input type="checkbox" id="isRead">
             </p>
             <button id="addBook" type="submit">Add</button>
         </form>

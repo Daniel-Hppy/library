@@ -18,6 +18,15 @@ Book.prototype.toggleRead = function () {
 }
 
 function addBookToLibrary() {
+    const title = document.querySelector("#title").value;
+    const author = document.querySelector("#author").value;
+    const pages = document.querySelector("#pages").value;
+    const isRead = document.querySelector("#isRead").checked;
+
+    myLibrary.push(new Book(title, author, pages, isRead));
+}
+
+function displayBook() {
     library.innerHTML = "";
 
     myLibrary.forEach((book, index) => {
@@ -44,7 +53,7 @@ function addBookToLibrary() {
             // if (index !== -1) {
             //     myLibrary[index].isRead = !myLibrary[index].isRead;
             book.toggleRead();
-            addBookToLibrary();
+            displayBook();
             // }
         });
 
@@ -55,7 +64,7 @@ function addBookToLibrary() {
             const index = myLibrary.findIndex(b => b.id === book.id);
             if (index !== -1) {
                 myLibrary.splice(index, 1);
-                addBookToLibrary();
+                displayBook();
             }
         });
 
@@ -71,13 +80,9 @@ dialog.showModal();
 
 addButton.addEventListener("click", (e) => {
     e.preventDefault();
-
-    const title = document.querySelector("#title").value;
-    const author = document.querySelector("#author").value;
-    const pages = document.querySelector("#pages").value;
-
-    myLibrary.push(new Book(title, author, pages, false));
-
     addBookToLibrary();
+    displayBook();
+
+    document.querySelector("#bookForm").reset();
     dialog.close();
 });
